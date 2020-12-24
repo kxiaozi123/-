@@ -1,4 +1,4 @@
-package com.imooc.mianshi;
+package com.imooc.mianshi.volatile_;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -16,6 +16,16 @@ import java.util.concurrent.atomic.AtomicInteger;
  * 2,原子性
  * 3，有序性
  * 硬盘<内存<cpu  中间有个缓存cache
+ *
+ *
+ * 有序性解释：
+ * 例如 高考的时候  答题的顺序和卷子上的顺序不一样
+ * 需要注意的是： 处理器在进行指令重排的时候必须考虑 数据依赖性
+ *  注：
+ *  多线程情况下 线程交替执行 由于编译器的优化 两个线程中使用的变量能否保证一致性是无法确定的
+ *  禁止指令重排小总结：
+ *  通过内存屏障 禁止在内存屏障前后执行重排优化
+
  */
 class MyData {
     volatile int num = 0;
@@ -38,7 +48,7 @@ class MyData {
 }
 
 /**
- * volatile保证可见性和不保证demo
+ * volatile保证可见性和不保证原子性 验证demo
  */
 public class Main {
     public static void main(String[] args) {
